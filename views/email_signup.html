@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>test</title>
+    <script
+      src="../mixhtml.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <form
+      id="frm_user"
+      autocomplete="off"
+    >
+      <div>
+        <label for="user_email">
+          <span>Email</span>
+        </label>
+        <input
+          name="user_email"
+          type="text"
+        />
+      </div>
+
+      <div>
+        <label for="user_password">
+          <span>Password</span>
+        </label>
+        <input
+          name="user_password"
+          type="text"
+        />
+      </div>
+
+      <button
+        mix-post="/signup_user"
+        mix-data="#frm_user"
+      >
+        Signup
+      </button>
+    </form>
+  </body>
+</html>

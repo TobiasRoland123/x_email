@@ -1,0 +1,3 @@
+# Ignore Bottle package files
+bottle/
+lib/
