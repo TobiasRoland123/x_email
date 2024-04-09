@@ -84,9 +84,9 @@ def _():
 
         print(f"user_email: {user_email}, user_password: {user_password}, user_pk: {user_pk}, user_verified: {user_verified}, user_verification_id: {user_verification_id}")
 
-        # db = x.sqldb()
-        # q = db.execute("INSERT INTO users VALUES(?, ?, ?,?,?)",(user_pk, user_email, user_password, user_verified, user_verification_id))
-        # db.commit()
+        db = x.sqldb()
+        q = db.execute("INSERT INTO users VALUES(?, ?, ?,?,?)",(user_pk, user_email, user_password, user_verified, user_verification_id))
+        db.commit()
 
 
 
@@ -131,6 +131,23 @@ def _():
     except Exception as ex:
         print(ex)
         return "error"
+
+
+
+###############################################
+@get("/activate_user/<key>")
+def _(key):
+    try:
+
+        db = x.sqldb()
+        users = db.execute("FOR user IN users RETURN user")
+        # q = db.execute({"query":"UPDATE users SET user_verified = 1 WHERE user_verification_id = 1d63c794ecd948089b2789901e5bae01"})
+        db.commit()
+
+        print(users)
+        return f"xxx{key}"
+    except Exception as ex:
+        print(ex)
 
 
 ###############################################
