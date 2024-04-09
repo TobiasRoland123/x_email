@@ -4,6 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import x
 import uuid
+from bottle import get, run
 
  
 ##############################
@@ -140,12 +141,14 @@ def _(key):
     try:
 
         db = x.sqldb()
-        users = db.execute("FOR user IN users RETURN user")
-        # q = db.execute({"query":"UPDATE users SET user_verified = 1 WHERE user_verification_id = 1d63c794ecd948089b2789901e5bae01"})
+        user = db.execute("SELECT * FROM users WHERE user_verification_id = ?", (key,))
+        q = db.execute("UPDATE users SET user_verified = 1 WHERE user_verification_id = ?", (key,))
+        db.commit()
+      
         db.commit()
 
-        print(users)
-        return f"xxx{key}"
+        
+        return template("activate_user.html", user=user)
     except Exception as ex:
         print(ex)
 
